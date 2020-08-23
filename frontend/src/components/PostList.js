@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Post from './Post';
 import Axios from "axios";
+import { useAppContext } from 'store';
 
 const apiURL = "http://127.0.0.1:8000/api/posts/"
 
 function PostList() {
+    const { store: { jwtToken }, dispatch } = useAppContext();
     const [postList, setPostList] = useState([]);
     useEffect(() => {
         Axios.get(apiURL)

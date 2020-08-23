@@ -5,11 +5,14 @@ import { FrownOutlined, SmileOutlined } from "@ant-design/icons";
 import { Alert } from "antd";
 import Axios from 'axios';
 import useLocalStorage from "utils/useLocalStorage";
+import { useAppContext } from "store";
+import { setToken } from 'store';
 
 
 function Login() {
+    const { store, dispatch } = useAppContext();
     const history = useHistory();
-    const [jwtToken, setJwtToken] = useLocalStorage("jwtToken", "");
+    //const [jwtToken, setJwtToken] = useLocalStorage("jwtToken", "");
     const [fieldErrors, setFieldErrors] = useState({});
 
     const onFinish = values => {
@@ -26,7 +29,7 @@ function Login() {
 
                 const { data: { token: jwtToken } } = response;
 
-                setJwtToken(jwtToken);
+                dispatch(setToken(jwtToken));
 
                 notification.open({
                     message: `어서오세요 ${username}`,
