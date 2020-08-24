@@ -5,7 +5,6 @@ import "./Suggestion.scss";
 
 export default function Suggestion({ suggestionUser, onFollowUser }) {
     const { username, name, avatar_url, is_follow } = suggestionUser;
-    console.log("gogo", suggestionUser);
     return (
         <div className="suggestion">
             <div className="avatar">
