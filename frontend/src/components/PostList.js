@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Alert } from 'antd';
 import Post from './Post';
 import Axios from "axios";
 import { useAppContext } from 'store';
@@ -9,7 +10,8 @@ function PostList() {
     const { store: { jwtToken }, dispatch } = useAppContext();
     const [postList, setPostList] = useState([]);
     useEffect(() => {
-        Axios.get(apiURL)
+        const headers = { Authorization: `JWT ${jwtToken}` };
+        Axios.get(apiURL, { headers })
             .then(response => {
                 const { data } = response;
                 console.log("loaded response :", response);
@@ -22,6 +24,9 @@ function PostList() {
     }, []);
     return (
         <div>
+            {postList.length === 0 && (
+                <Alert type='warning' message='포스팅이 없습니다.' />
+            )}
             {postList.map(post => <Post post={post} key={post.id} />)}
         </div>
     );
