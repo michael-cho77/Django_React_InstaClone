@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Card, Form, Input, Button, notification } from 'antd';
 import { FrownOutlined, SmileOutlined } from "@ant-design/icons";
 import { Alert } from "antd";
@@ -11,9 +11,12 @@ import { setToken } from 'store';
 
 function Login() {
     const { store, dispatch } = useAppContext();
+    const location = useLocation();
     const history = useHistory();
     //const [jwtToken, setJwtToken] = useLocalStorage("jwtToken", "");
     const [fieldErrors, setFieldErrors] = useState({});
+
+    const { from: loginRedirectUrl } = location.state || { from: { pathname: "/" } };
 
     const onFinish = values => {
 
@@ -35,7 +38,7 @@ function Login() {
                     message: `어서오세요 ${username}`,
                     icon: <SmileOutlined style={{ color: "#108ee9" }} />
                 });
-                history.push("/");
+                history.push(loginRedirectUrl);
             } catch (error) {
                 if (error.response) {
                     notification.open({
