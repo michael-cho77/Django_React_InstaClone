@@ -1,10 +1,14 @@
 import React from 'react';
 import { HeartOutlined, HeartTwoTone, UserOutlined } from "@ant-design/icons";
-import { Card, Avatar } from 'antd';
+import { Avatar, Card, Comment, Tooltip } from "antd";
+import { useAppContext } from 'store';
+import CommentList from "./CommentList";
 
 function Post({ post, handleLike }) {
     const { author, caption, location, photo, tag_set, is_like } = post;
     const { username, name, avatar_url } = author;
+
+
     return (
         <div className="post">
             <Card hoverable cover={<img src={photo} alt={caption} />}
@@ -31,6 +35,8 @@ function Post({ post, handleLike }) {
                     description={caption}
                 />
             </Card>
+
+            <CommentList post={post} />
         </div>
     );
 
