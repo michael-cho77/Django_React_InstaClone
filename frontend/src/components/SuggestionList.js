@@ -2,8 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Card } from "antd";
 import Suggestion from "./Suggestion";
 import "./SuggestionList.scss";
-import Axios from 'axios';
-import useAxios from 'axios-hooks';
+import { axiosInstance, useAxios } from "api";
 import { useAppContext } from "store";
 
 export default function SuggestionList({ style }) {
@@ -17,7 +16,7 @@ export default function SuggestionList({ style }) {
 
 
     const [{ data: originUserList, loading, error }, refetch] = useAxios({
-        url: "http://localhost:8000/accounts/suggestions/",
+        url: "/accounts/suggestions/",
         headers
     });
 
@@ -31,7 +30,7 @@ export default function SuggestionList({ style }) {
     const onFollowUser = (username) => {
         const data = { username };
         const config = { headers };
-        Axios.post("http://localhost:8000/accounts/follow/", data, config)
+        axiosInstance.post("/accounts/follow/", data, config)
             .then(response => {
                 setUserList(prevUserList =>
                     prevUserList.map(user =>

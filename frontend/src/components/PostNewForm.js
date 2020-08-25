@@ -5,7 +5,7 @@ import { FrownOutlined, PlusOutlined } from "@ant-design/icons";
 import { getBase64FromFile } from "utils/base64";
 import { useAppContext } from "store";
 import { useHistory } from "react-router-dom";
-import Axios from "axios";
+import { axiosInstance } from "api";
 import { parseErrorMessages } from 'utils/forms';
 
 
@@ -54,7 +54,7 @@ export default function PostNewForm() {
             Authorization: `JWT ${jwtToken}`
         };
         try {
-            await Axios.post("http://localhost:8000/api/posts/", formData, { headers });
+            const response = await axiosInstance.post("/api/posts/", formData, { headers });
             history.push("/");
         } catch (error) {
             if (error.response) {

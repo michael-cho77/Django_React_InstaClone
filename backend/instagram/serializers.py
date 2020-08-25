@@ -1,9 +1,22 @@
+import re
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import Post, Comment
 
 
 class AuthorSerializer(serializers.ModelSerializer):
+    avatar_url = serializers.SerializerMethodField("avatar_url_field")
+
+    def avatar_url_field(self, author):
+        # ?s : s가 있을수도 없을수도 있다.
+        if re.match(r"^https?://", author.avatar_url):
+            return author.avatar_url
+
+        if "request" in self.context:
+            scheme = self.context["request"].scheme  # http or https 추출
+            host = self.context["request"].get_host()  # http or https 이하 url 추출
+            return scheme + "://" + host + author.avatar_url
+
     class Meta:
         model = get_user_model()
         fields = ["id", "username", "name", "avatar_url"]
