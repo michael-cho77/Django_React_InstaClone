@@ -7,6 +7,7 @@ import Axios from 'axios';
 import useLocalStorage from "utils/useLocalStorage";
 import { useAppContext } from "store";
 import { setToken } from 'store';
+import { parseErrorMessages } from 'utils/forms';
 
 
 function Login() {
@@ -49,16 +50,7 @@ function Login() {
 
                     const { data: fieldsErrorMessages } = error.response;
                     //python에서 dict.items()
-                    setFieldErrors(
-                        Object.entries(fieldsErrorMessages).reduce((acc, [fieldName, errors]) => {
-                            // errors : ["m1", "m2"].join(" ") => "m1 m2"
-                            acc[fieldName] = {
-                                validateStatus: "error",
-                                help: errors.join(" ")
-                            };
-                            return acc;
-                        }, {})
-                    );
+                    setFieldErrors(parseErrorMessages(fieldsErrorMessages));
                 }
             }
         }
