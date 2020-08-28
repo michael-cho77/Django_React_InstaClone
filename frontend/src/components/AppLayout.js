@@ -2,8 +2,17 @@ import React from "react";
 import { Input, Menu } from 'antd';
 import "./AppLayout.scss";
 import LogoImage from "assets/logo.png"
+import { useHistory } from "react-router-dom";
 
 function AppLayout({ children, sidebar }) {
+    const history = useHistory();
+    const goSignup = () => {
+        history.push("/accounts/signup");
+    }
+    const goLogin = () => {
+        history.push("/accounts/login");
+    }
+
     return (
         <div className="app">
             <div className="header" >
@@ -11,9 +20,8 @@ function AppLayout({ children, sidebar }) {
                 <div className="search"><Input.Search /></div>
                 <div className="topnav">
                     <Menu mode="horizontal">
-                        <Menu.Item>Menu1</Menu.Item>
-                        <Menu.Item>Menu2</Menu.Item>
-                        <Menu.Item>Menu3</Menu.Item>
+                        <Menu.Item onClick={goSignup}>SignUp</Menu.Item>
+                        <Menu.Item onClick={goLogin}>Log In</Menu.Item>
                     </Menu>
                 </div>
             </div>

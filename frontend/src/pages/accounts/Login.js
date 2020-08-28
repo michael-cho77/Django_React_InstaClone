@@ -57,7 +57,7 @@ function Login() {
 
 
     return (
-        <Card title="로그인">
+        <Card title="로그인" {...cardLayout}>
             <Form
                 {...layout}
                 onFinish={onFinish}
@@ -91,7 +91,7 @@ function Login() {
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Login
         </Button>
                 </Form.Item>
             </Form>
@@ -99,13 +99,18 @@ function Login() {
     );
 }
 
+const cardLayout = {
+    labelCol: { span: 2 },
+    wrapperCol: { span: 2 }
+}
+
 const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 16 }
+    wrapperCol: { span: 4 }
 };
 
 const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 }
+    wrapperCol: { offset: 11, span: 16 }
 };
 
 

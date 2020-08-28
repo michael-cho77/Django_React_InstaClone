@@ -59,6 +59,7 @@ export default function Signup() {
             onFinish={onFinish}
             //onFinishFailed={onFinishFailed}
             autoComplete={"false"}
+            style={{ marginTop: "5.5rem" }}
         >
             <Form.Item
                 label="Username"
@@ -72,6 +73,7 @@ export default function Signup() {
             >
                 <Input />
             </Form.Item>
+
 
             <Form.Item
                 label="Password"
@@ -95,7 +97,7 @@ export default function Signup() {
 
 const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 16 }
+    wrapperCol: { span: 4 }
 };
 
 const tailLayout = {
