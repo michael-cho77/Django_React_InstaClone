@@ -3,12 +3,35 @@ import { Input, Menu } from 'antd';
 import "./AppLayout.scss";
 import LogoImage from "assets/logo.png"
 import { useHistory } from "react-router-dom";
+import StoryList from "components/StoryList";
+import SuggestionList from "components/SuggestionList";
+import { Button } from 'antd'
 
-function AppLayout({ children, sidebar }) {
+
+
+
+
+
+function AppLayout({ children }) {
     const history = useHistory();
+
+    const handleClick = () => {
+        history.push("/posts/new");
+
+    }
+
+    const sidebar = (
+        <>
+            <Button type="primary" block style={{ marginBottom: "1rem" }} onClick={handleClick}>New Post</Button>
+            <StoryList style={{ marginBottom: "1rem" }} />
+            <SuggestionList />
+        </>
+    );
+
     const goHome = () => {
         history.push("/");
     }
+
 
     const goSignup = () => {
         history.push("/accounts/signup");
