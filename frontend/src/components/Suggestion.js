@@ -10,7 +10,7 @@ export default function Suggestion({ suggestionUser, onFollowUser }) {
             <div className="avatar">
                 <Avatar
                     size="small"
-                    icon={<img src={avatar_url} alt={`${username}'s avatar`} />}
+                    icon={<img src={process.env.REACT_APP_API_HOST + avatar_url} alt={`${username}'s avatar`} />}
 
                 />
             </div>
@@ -28,3 +28,4 @@ export default function Suggestion({ suggestionUser, onFollowUser }) {
 
 
 {/*{process.env.REACT_APP_API_HOST + avatar_url} */ }
+{/* icon={<img src={avatar_url} alt={`${username}'s avatar`} /> */ }

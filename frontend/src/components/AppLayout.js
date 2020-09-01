@@ -6,6 +6,10 @@ import { useHistory } from "react-router-dom";
 
 function AppLayout({ children, sidebar }) {
     const history = useHistory();
+    const goHome = () => {
+        history.push("/");
+    }
+
     const goSignup = () => {
         history.push("/accounts/signup");
     }
@@ -16,7 +20,7 @@ function AppLayout({ children, sidebar }) {
     return (
         <div className="app">
             <div className="header" >
-                <div className="page-title"><img src={LogoImage} alt="logo" /></div>
+                <div className="page-title" ><div onClick={goHome} style={{ cursor: 'pointer' }}><img src={LogoImage} alt="logo" /></div></div>
                 <div className="search"><Input.Search /></div>
                 <div className="topnav">
                     <Menu mode="horizontal">

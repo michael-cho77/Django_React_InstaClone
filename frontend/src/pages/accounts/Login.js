@@ -7,6 +7,7 @@ import { useAppContext } from "store";
 import { setToken } from 'store';
 import { parseErrorMessages } from 'utils/forms';
 
+import AppLayout from '../../components/AppLayout';
 
 function Login() {
     const { store, dispatch } = useAppContext();
@@ -57,6 +58,7 @@ function Login() {
 
 
     return (
+
         <Card title="로그인" {...cardLayout}>
             <Form
                 {...layout}
@@ -96,6 +98,7 @@ function Login() {
                 </Form.Item>
             </Form>
         </Card>
+
     );
 }
 
@@ -106,11 +109,11 @@ const cardLayout = {
 
 const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 4 }
+    wrapperCol: { span: 16 }
 };
 
 const tailLayout = {
-    wrapperCol: { offset: 11, span: 16 }
+    wrapperCol: { offset: 8, span: 16 }
 };
 
 

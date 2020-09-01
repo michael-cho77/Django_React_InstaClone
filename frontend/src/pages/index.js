@@ -12,9 +12,11 @@ function Root() {
     return (
         <>
             <LoginRequiredRoute exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <LoginRequiredRoute exact path="/posts/new" component={PostNew} />
-            <Route path="/accounts" component={AccountsRoutes} />
+            <AppLayout>
+                <Route exact path="/about" component={About} />
+                <LoginRequiredRoute exact path="/posts/new" component={PostNew} />
+                <Route path="/accounts" component={AccountsRoutes} />
+            </AppLayout>
         </>
     );
 }
