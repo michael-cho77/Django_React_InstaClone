@@ -56,6 +56,7 @@ export default function PostNewForm() {
         try {
             const response = await axiosInstance.post("/api/posts/", formData, { headers });
             history.push("/");
+            history.go(0);
         } catch (error) {
             if (error.response) {
                 const { status, data: fieldsErrorMessages } = error.response;
